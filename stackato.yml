@@ -1,0 +1,6 @@
+name: socialapi-xmpp
+
+framework:
+  type: node
+
+mem: 64M

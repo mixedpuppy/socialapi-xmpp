@@ -1,0 +1,20 @@
+{
+  "name": "jsxc",
+  "version": "1.1.0a",
+  "description": "Real-time chat app",
+  "homepage": "http://www.jsxc.org/",
+  "bugs": "https://github.com/sualko/jsxc/issues",
+  "license": "MIT",
+  "author": "Klaus Herberth <klaus@jsxc.org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sualko/jsxc"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express":"",
+    "node-xmpp-bosh":""
+  }
+}
