@@ -611,6 +611,9 @@ ul.jsxc_vCard {
   padding-left: 2px;
   overflow: hidden; }
 
+#rosterView .jsxc_window {
+  display: none;
+}
 #jsxc_windowList {
   position: fixed;
   bottom: 0;
