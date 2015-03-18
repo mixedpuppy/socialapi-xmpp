@@ -248,11 +248,12 @@ var jsxc;
 
          // Check if we have to establish a new connection
          if (!jsxc.storage.getItem('rid') || !jsxc.storage.getItem('sid') || !jsxc.restore) {
-
+console.log("establish new connection");
             // Looking for a login form
             if (!jsxc.options.loginForm.form || !(jsxc.el_exists(jsxc.options.loginForm.form) && jsxc.el_exists(jsxc.options.loginForm.jid) && jsxc.el_exists(jsxc.options.loginForm.pass))) {
 
                if (jsxc.options.displayRosterMinimized()) {
+console.log("init roster from jsxc.init");
                   // Show minimized roster
                   jsxc.storage.setUserItem('roster', 'hidden');
                   jsxc.gui.roster.init();
@@ -1202,6 +1203,7 @@ dump("settings: "+JSON.stringify(settings)+"\n")
        */
       toggleList: function() {
          var self = $(this);
+         console.log("toggleList for ",self);
 
          self.disableSelection();
 
@@ -1211,6 +1213,7 @@ dump("settings: "+JSON.stringify(settings)+"\n")
          slideUp = function() {
             ul.slideUp({
                complete: function() {
+            console.log("slideUp complete");
                   self.removeClass('jsxc_opened');
                }
             });
@@ -1219,9 +1222,11 @@ dump("settings: "+JSON.stringify(settings)+"\n")
          };
 
          $(this).click(function() {
+            console.log("click on menu");
 
             if (ul.is(":hidden")) {
                // hide other lists
+               console.log("hide other lists!");
                $('body').click();
                $('body').one('click', slideUp);
             } else {
@@ -1236,8 +1241,11 @@ dump("settings: "+JSON.stringify(settings)+"\n")
 
             return false;
          }).mouseleave(function() {
-            ul.data('timer', window.setTimeout(slideUp, 2000));
+            console.log("mouseleave on menu");
+            if (!ul.is(":hidden"))
+               ul.data('timer', window.setTimeout(slideUp, 2000));
          }).mouseenter(function() {
+            console.log("mouseenter on menu");
             window.clearTimeout(ul.data('timer'));
          });
       },
@@ -2031,14 +2039,27 @@ dump("settings: "+JSON.stringify(settings)+"\n")
        * @returns {undefined}
        */
       init: function() {
-         if (!jsxc.el_exists('#jsxc_roster')) {
-            $(jsxc.options.rosterAppend + ':first').append($(jsxc.gui.template.get('roster')));
+console.log("roster.init called");
+
+         if (jsxc.el_exists('#jsxc_roster')) {
+            return;
          }
+         $(jsxc.options.rosterAppend + ':first').append($(jsxc.gui.template.get('roster')));
 
          if (jsxc.options.get('hideOffline')) {
             $('#jsxc_menu .jsxc_hideOffline').text(jsxc.translate('%%Show offline%%'));
             $('#jsxc_buddylist').addClass('jsxc_hideOffline');
          }
+
+         $('#jsxc_menu .jsxc_logout').click(function() {
+            jsxc.options.logoutElement = $(this);
+            jsxc.triggeredFromLogout = true;
+            return jsxc.xmpp.logout();
+         });
+
+         $('#jsxc_menu .jsxc_reload').click(function() {
+            location.reload();
+         });
 
          $('#jsxc_menu .jsxc_settings').click(function() {
             jsxc.gui.showSettings();
@@ -3141,6 +3162,8 @@ dump("settings: "+JSON.stringify(settings)+"\n")
                      <li class="jsxc_hideOffline">%%Hide offline%%</li>\
                      <li class="jsxc_onlineHelp">%%Online help%%</li>\
                      <li class="jsxc_about">%%About%%</li>\
+                     <li class="jsxc_reload">%%Reload%%</li>\
+                     <li class="jsxc_logout">%%Logout%%</li>\
                  </ul>\
               </div>\
               <div id="jsxc_notice">\

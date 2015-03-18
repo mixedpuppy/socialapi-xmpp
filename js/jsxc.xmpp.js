@@ -395,7 +395,12 @@
             $('#jsxc_roster').remove();
 
             if (jsxc.triggeredFromLogout) {
-               window.location = jsxc.options.logoutElement.attr('href');
+               var url = jsxc.options.logoutElement.attr('href');
+               if (url) {
+                  window.location = url;
+               } else {
+                  window.location.reload();
+               }
             }
          } else {
             jsxc.gui.roster.noConnection();
