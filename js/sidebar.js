@@ -1,7 +1,7 @@
 $(function() {
    var settings = {
       xmpp: {
-         url: location.protocol + "//" + location.hostname + ":5280/http-bind/",
+         url: location.protocol + "//" + location.host + "/http-bind/",
          domain: 'jabber.hot-chilli.net',
          resource: 'socialapi-xmpp',
          overwrite: true,

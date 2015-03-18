@@ -1,0 +1,7 @@
+{
+  "name": "socialapi-xmpp",
+  "description": "A socialapi xmpp test",
+  "repository": "https://github.com/mixedpuppy/socialapi-xmpp",
+  "logo": "",
+  "keywords": ["socialapi", "xmpp", "firefox"]
+}

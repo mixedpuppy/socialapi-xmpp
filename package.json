@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "express":"",
-    "node-xmpp-bosh":""
+    "node-xmpp-bosh":"",
+    "http-proxy": ""
   }
 }
