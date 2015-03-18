@@ -766,6 +766,7 @@
             return true;
          }
 
+         jsxc.gui.window.open(bid);
          var win = jsxc.gui.window.init(bid);
 
          // If we now the full jid, we use it
