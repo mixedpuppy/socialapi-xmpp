@@ -17,5 +17,8 @@
     "express":"",
     "node-xmpp-bosh":"",
     "http-proxy": ""
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
