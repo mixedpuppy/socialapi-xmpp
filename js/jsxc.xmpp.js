@@ -420,6 +420,9 @@
 
          if (jsxc.options.loginForm.triggered) {
             jsxc.submitLoginForm();
+         } else {
+            // XXX should show something better here.
+            jsxc.gui.showAuthFail();
          }
       },
 
@@ -438,6 +441,9 @@
                   jsxc.submitLoginForm();
                   break;
             }
+         } else {
+            // XXX should show something better here.
+            jsxc.gui.showAuthFail();
          }
       },
 
