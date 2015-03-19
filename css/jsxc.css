@@ -52,7 +52,11 @@ div.jsxc_transfer, div.jsxc_transfer.jsxc_disabled:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 100%; }
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 30px;
+  padding: 0;
+  }
   #jsxc_buddylist li {
     padding: 0;
     margin: 0;
@@ -112,7 +116,7 @@ div.jsxc_transfer, div.jsxc_transfer.jsxc_disabled:hover {
     width: 30px;
     height: 30px;
     top: 0;
-    right: 0;
+    right: 10px;
     cursor: pointer; }
     #jsxc_buddylist .jsxc_control:after {
       content: '▾';
@@ -268,16 +272,18 @@ li.jsxc_offline {
   background: url("/img/emotions/tired.png"); }
 
 #jsxc_roster {
-  position: fixed;
+  /*position: fixed;*/
+  margin: 0;
+  padding: 0;
   top: 0px;
   bottom: 0;
   right: 0;
   width: 100%;
-  overflow: visible;
-  border-left: 4px solid #999999;
+  overflow: hidden;
+  /*border-left: 4px solid #999999;*/
   z-index: 80;
-  margin-left: 10px;
-  box-shadow: 0px 0px 7px #000;
+  /*margin-left: 10px;*/
+  /*box-shadow: 0px 0px 7px #000;*/
   background-color: #333333; }
   #jsxc_roster a {
     cursor: pointer; }
@@ -346,7 +352,7 @@ li.jsxc_offline {
     background-color: rgba(153, 153, 153, 0.5); }
 
 #jsxc_roster > .jsxc_bottom {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 30px;
   width: 100%;
@@ -357,7 +363,7 @@ li.jsxc_offline {
   color: gray;
   cursor: pointer;
   line-height: 30px;
-  z-index: 50; }
+  z-index: 500; }
   #jsxc_roster > .jsxc_bottom ul {
     width: 100%;
     position: absolute;
