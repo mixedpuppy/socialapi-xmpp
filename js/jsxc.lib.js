@@ -1279,7 +1279,7 @@ dump("settings: "+JSON.stringify(settings)+"\n")
             if (settings === false) {
                jsxc.gui.showAuthFail();
             } else {
-               jsxc.xmpp.login();
+               jsxc.xmpp.login(jsxc.options.xmpp.jid, jsxc.options.xmpp.password);
             }
 
             return false;
