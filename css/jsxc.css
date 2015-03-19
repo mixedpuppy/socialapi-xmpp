@@ -1,3 +1,7 @@
+body {
+  background-color: #333;
+}
+
 #jsxc_buddylist li:hover .jsxc_avatar, .jsxc_avatar {
   width: 25px;
   height: 25px;
@@ -517,6 +521,7 @@ ul.jsxc_vCard {
   width: 30px;
   cursor: pointer;
   float: right;
+  margin-right: 5px;
   text-align: center; }
   #jsxc_menu:hover > span {
     opacity: 1; }
