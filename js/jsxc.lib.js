@@ -598,7 +598,9 @@ dump("settings: "+JSON.stringify(settings)+"\n")
                return true;
             }
 
-            //jsxc.gui.window.init(bid);
+            // init master window list if necessary
+            jsxc.gui.window.init(bid);
+            // open socialapi window
             jsxc.gui.window.open(bid);
 
             //if (!window.minimize) {

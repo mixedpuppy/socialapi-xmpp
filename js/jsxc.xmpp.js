@@ -766,7 +766,6 @@
             return true;
          }
 
-         jsxc.gui.window.open(bid);
          var win = jsxc.gui.window.init(bid);
 
          // If we now the full jid, we use it
@@ -802,6 +801,9 @@
          } else {
             jsxc.gui.window.postMessage(bid, 'in', body, false, forwarded, stamp);
          }
+
+         // open socialapi chat window
+         jsxc.gui.window.open(bid);
 
          // preserve handler
          return true;
