@@ -10,7 +10,7 @@
     */
    jsxc.l10n = {
       en: {
-         Logging_in: 'Logging in…',
+         Logging_in: 'Logging in&#8230;',
          your_connection_is_unencrypted: 'Your connection is unencrypted.',
          your_connection_is_encrypted: 'Your connection is encrypted.',
          your_buddy_closed_the_private_connection: 'Your buddy closed the private connection.',
