@@ -2383,6 +2383,7 @@ console.log("roster.init called");
       noConnection: function() {
          $('#jsxc_roster').addClass('jsxc_noConnection');
 
+         jsxc.gui.showLoginBox();
          $('#jsxc_roster').append($('<p>' + jsxc.l.no_connection + '</p>').append(' <a>' + jsxc.l.relogin + '</a>').click(function() {
             jsxc.gui.showLoginBox();
          }));
