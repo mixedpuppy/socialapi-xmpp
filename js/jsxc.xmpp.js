@@ -139,7 +139,7 @@
                   localStorage.setItem('strophe.caps._jidNodeIndex', JSON.stringify(_jidNodeIndex));
                }, Strophe.NS.CAPS);
             }
-
+console.log("xmpp.login with ", jid || jsxc.options.xmpp.jid);
             jsxc.xmpp.conn.connect(jid || jsxc.options.xmpp.jid, password || jsxc.options.xmpp.password, callback);
          }
       },

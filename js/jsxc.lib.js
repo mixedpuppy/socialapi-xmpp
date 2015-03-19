@@ -393,7 +393,8 @@ dump("settings: "+JSON.stringify(settings)+"\n")
          jsxc.role_allocation = true;
 
          jsxc.restoreRoster();
-         jsxc.restoreWindows();
+         // only master restores windows
+         //jsxc.restoreWindows();
          jsxc.restoreCompleted = true;
 
          $(document).trigger('restoreCompleted.jsxc');
@@ -584,6 +585,7 @@ dump("settings: "+JSON.stringify(settings)+"\n")
        * Restore all windows
        */
       restoreWindows: function() {
+         console.log("restoreWindows in ", location.href);
          var windows = jsxc.storage.getUserItem('windowlist');
 
          if (windows === null) {
@@ -599,7 +601,7 @@ dump("settings: "+JSON.stringify(settings)+"\n")
             }
 
             // init master window list if necessary
-            jsxc.gui.window.init(bid);
+            //jsxc.gui.window.init(bid);
             // open socialapi window
             jsxc.gui.window.open(bid);
 
@@ -2668,7 +2670,15 @@ console.log("roster.init called");
        * @returns {jQuery} Window object
        */
       open: function(bid) {
-         return openChat(bid);
+         return openChat(bid, function(win) {
+            console.log("opened a chat window for ", bid);
+            jsxc.gui.window.init(bid);
+            win.addEventListener("unload", function _onclose() {
+               win.removeEventListener("unload", _onclose, true);
+               console.log("chat onclose ", bid);
+               jsxc.gui.window._close(bid);
+            }, true)
+         });
 
          //var win = jsxc.gui.window.init(bid);
          //jsxc.gui.window.show(bid);
@@ -2703,6 +2713,18 @@ console.log("roster.init called");
        * @param {String} bid bar jid
        */
       close: function(bid) {
+         window.close()
+         jsxc.gui.window._close(bid);
+      },
+
+      /**
+       * Close chatwindow
+       * 
+       * @param {String} bid
+       */
+      _close: function(bid) {
+         console.log("chat._close ", bid);
+
 
          if (jsxc.gui.window.get(bid).length === 0) {
             jsxc.warn('Want to close a window, that is not open.');
@@ -2720,21 +2742,11 @@ console.log("roster.init called");
          }
 
          jsxc.gui.window.get(bid).remove();
-         jsxc.gui.window._close(bid);
-      },
-
-      /**
-       * Close chatwindow
-       * 
-       * @param {String} bid
-       */
-      _close: function(bid) {
-         window.close()
-      //   jsxc.gui.window.get(bid).hide('slow', function() {
-      //      $(this).remove();
-      //
-      //      jsxc.gui.updateWindowListSB();
-      //   });
+         //jsxc.gui.window.get(bid).hide('slow', function() {
+         //   $(this).remove();
+         //
+         //   //jsxc.gui.updateWindowListSB();
+         //});
       },
 
       /**

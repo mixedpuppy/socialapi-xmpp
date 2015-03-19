@@ -50,10 +50,11 @@ $(function() {
 });
 
 var chatWin;
-function openChat(bid) {
+function openChat(bid, callback) {
   navigator.mozSocial.openChatWindow("./chat.htm#"+bid, function(win) {
-      dump("chat window is opened "+win+"\n");
     chatWin = win;
+    callback(win);
   });
 }
+
 
