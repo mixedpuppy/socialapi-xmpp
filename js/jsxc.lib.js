@@ -1744,7 +1744,7 @@ dump("settings: "+JSON.stringify(settings)+"\n")
                var img_el = $('<img class="jsxc_vCard" alt="avatar" />');
                img_el.attr('src', src);
 
-               $('#jsxc_dialog h3').before(img_el);
+               $('#jsxc_dialog h3').after(img_el);
             }
 
             if ($(stanza).find('vCard').length === 0 || ($(stanza).find('vcard > *').length === 1 && photo.length === 1)) {
@@ -2426,50 +2426,60 @@ console.log("roster.init called");
        * @returns {jQuery} Dialog object
        */
       open: function(data, o) {
+         // there can be only one
+         jsxc.gui.dialog.close();
 
-         var opt = o || {};
+         //var opt = o || {};
 
          // default options
          var options = {};
-         options = {
-            onComplete: function() {
-               $('#jsxc_dialog .jsxc_close').click(function(ev) {
-                  ev.preventDefault();
+         //options = {
+         //   onComplete: function() {
+         //      $('#jsxc_dialog .jsxc_close').click(function(ev) {
+         //         ev.preventDefault();
+         //
+         //         jsxc.gui.dialog.close();
+         //      });
+         //
+         //      // workaround for old colorbox version (used by firstrunwizard)
+         //      //if (options.closeButton === false) {
+         //      //   $('#cboxClose').hide();
+         //      //}
+         //
+         //      //$.colorbox.resize();
+         //
+         //      $(document).trigger('complete.dialog.jsxc');
+         //   },
+         //   onClosed: function() {
+         //      $(document).trigger('close.dialog.jsxc');
+         //   },
+         //
+         //   onCleanup: function() {
+         //      $(document).trigger('cleanup.dialog.jsxc');
+         //   },
+         //   opacity: 0.5
+         //};
+         //
+         //if (opt.noClose) {
+         //   options.overlayClose = false;
+         //   options.escKey = false;
+         //   options.closeButton = false;
+         //   delete opt.noClose;
+         //}
+         //
+         //$.extend(options, opt);
 
-                  jsxc.gui.dialog.close();
-               });
+         options.html = '<div id="jsxc_dialog"><div class="jsxc_dismiss">×</div>' + data + '</div>';
 
-               // workaround for old colorbox version (used by firstrunwizard)
-               if (options.closeButton === false) {
-                  $('#cboxClose').hide();
-               }
+         //$.colorbox(options);
 
-               $.colorbox.resize();
+         $(options.html).appendTo('body').show('slow');
+         $('#jsxc_dialog .jsxc_dismiss').click(function(ev) {
+            ev.preventDefault();
 
-               $(document).trigger('complete.dialog.jsxc');
-            },
-            onClosed: function() {
-               $(document).trigger('close.dialog.jsxc');
-            },
-            onCleanup: function() {
-               $(document).trigger('cleanup.dialog.jsxc');
-            },
-            opacity: 0.5
-         };
-
-         if (opt.noClose) {
-            options.overlayClose = false;
-            options.escKey = false;
-            options.closeButton = false;
-            delete opt.noClose;
-         }
-
-         $.extend(options, opt);
-
-         options.html = '<div id="jsxc_dialog">' + data + '</div>';
-
-         $.colorbox(options);
-
+            jsxc.gui.dialog.close();
+         });
+         $(document).trigger('complete.dialog.jsxc');
          return $('#jsxc_dialog');
       },
 
@@ -2478,7 +2488,10 @@ console.log("roster.init called");
        */
       close: function() {
          jsxc.debug('close dialog');
-         $.colorbox.close();
+         //$.colorbox.close();
+         $(document).trigger('close.dialog.jsxc');
+         $('#jsxc_dialog').remove();
+         $(document).trigger('cleanup.dialog.jsxc');
       },
 
       /**
@@ -2487,7 +2500,7 @@ console.log("roster.init called");
        * @param {Object} options e.g. width and height
        */
       resize: function(options) {
-         $.colorbox.resize(options);
+         //$.colorbox.resize(options);
       }
    };
 

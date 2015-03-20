@@ -426,7 +426,14 @@ li.jsxc_offline {
 
 #jsxc_dialog {
   padding: 10px;
-  min-width: 300px; }
+  position: fixed;
+  z-index: 999999;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: white;
+  min-width: 90%; }
   #jsxc_dialog ul {
     list-style: none;
     margin: 0;
@@ -450,8 +457,12 @@ li.jsxc_offline {
   #jsxc_dialog h3 {
     font-size: 120%;
     font-weight: bold;
+    display: block;
+    background-color: #ddd;
+    padding: 10px;
+    margin: 0;
     margin-bottom: 10px;
-    margin-top: 20px; }
+    }
   #jsxc_dialog .jsxc_right {
     margin-top: 20px; }
   #jsxc_dialog fieldset {
@@ -475,6 +486,14 @@ li.jsxc_offline {
       width: 50px; }
   #jsxc_dialog input[readonly] {
     background-color: #e6e6e6; }
+  #jsxc_dialog .jsxc_dismiss {
+    float: right;
+    font-size: 1.2em;
+    margin: 5px;
+  }
+  #jsxc_dialog .jsxc_dismiss:hover {
+    cursor: pointer;
+  }
 
 .jsxc_avatar img {
   display: block;
