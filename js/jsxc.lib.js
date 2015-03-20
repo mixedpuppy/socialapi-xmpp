@@ -3242,7 +3242,9 @@ console.log("roster.init called");
                 <input type="reset" class="button jsxc_close" name="clear" value="%%Cancel%%"/>\
                 <input type="submit" class="button creation" name="commit" value="%%Connect%%"/>\
             </div>\
-        </form>',
+        </form>\
+        <p>Sign in with your xmpp account. If you do not have one, you can get one\
+      on <a href="https://jabber.hot-chilli.net/account/create/">https://jabber.hot-chilli.net/</a>.</p>',
       contactDialog: '<h3>%%Add_buddy%%</h3>\
          <p class=".jsxc_explanation">%%Type_in_the_full_username_%%</p>\
          <form>\
